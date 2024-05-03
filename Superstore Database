@@ -25,16 +25,74 @@ VALUES
     (14, 'Cutlery Set', 'Kitchen Supplies', 34.50, 40, 4.4),
     (15, 'Cozy Throw Blanket', 'Furnishings', 24.99, 100, 4.2);
 
-How can I order the item by price from highest to lowest?
+-- orders the items by price
+select *
+from superstore
+where price > 0
+order by price;
+
+-- total price for all items
+select sum (price)
+from superstore;
+
+-- price of most expensive item
+select max (price)
+from superstore;
+
+-- price of least expensive item
+select min (price)
+from superstore;
+
+-- number of items we have in store
+select count (item_name)
+from superstore;
+
+-- average price of items
+select avg (price) 
+from superstore;
+
+-- highest priced in every category
+select max(price), category
+from superstore
+group by category;
+
+-- lowest price im every category
+select min (price), category
+from superstore
+group by category;
+
+-- price of most expensive item in kitchen supplies
+SELECT max(price)
+FROM superstore
+WHERE category="Kitchen Supplies";
+
+-- price of least expensive item in Kitchen Supplies
+SELECT min(price)
+FROM superstore
+WHERE category="Kitchen Supplies";
+
+-- Average price of kitchen supplies
+select avg(price)
+from superstore
+where category="Kitchen Supplies";
+
+-- how many items are in the kitchen supply category
+select count(category)
+from superstore
+where category="Kitchen Supplies";
+
+-- how many items are in the electronics category
+select count(category)
+from superstore
+where category="Electronics";
+
+-- All items in kitchen supplies category
+select item_name
+from superstore
+where category="Kitchen Supplies"
+group by item_name;
+
+-- How can I order the item by price from highest to lowest?
 select item_name
 from superstore 
 order by price desc
-
-What is the average of all of the item prices?
-select avg(price)
-from superstore 
-
-Show a statistic about the price for items in the category of "Kitchen Supplies". 
-SELECT avg(price)
-FROM superstore
-WHERE category="Kitchen Supplies"
